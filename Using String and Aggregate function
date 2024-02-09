@@ -1,0 +1,7 @@
+use SSIS;
+Create table Occupations(Name Varchar(30),occupation Varchar(30));
+Insert into Occupations values('Samantha','Doctor'),('Julia','Actor'),('Maria','Actor'),('Meera','Singer'),('Ashley','Professor'),('Ketty','Professor'),
+('Christeen','Professor'),('Jane','Actor'),('Jenny','Doctor'),('Priya','Singer');
+select * from Occupations;
+select Name+ '(' +SUBSTRING(occupation,1,1)+')' from Occupations order by name ASC;
+select 'There are a total of '+ cast(count(occupation) as varchar) +' '+ occupation as occupation_details from Occupations group by occupation order by count(occupation) ASC;
