@@ -1,0 +1,14 @@
+use SSIS;
+Create table triangles(length_1 int, length_2 int, length_3 int);
+insert into Triangles values(20,20,23),(20,20,20),(20,21,22),(13,14,30);
+select * from triangles;
+insert into Triangles values(12,3,4);
+select case when length_1+length_2 < length_3 or length_1+length_3 < length_2 or length_2+length_3 < length_1
+then case when length_1=length_2 and length_2=length_3 and length_1=length_3
+then 'Equilateral'
+          when length_1=length_2 or length_2=length_3 or length_1=length_3 
+		  then 'Isocelles'
+		  else 'Scalene'
+		  end
+    else 'Not a Triangle'
+	end from triangles;
