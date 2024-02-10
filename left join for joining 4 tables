@@ -1,0 +1,14 @@
+use SSIS;
+Create table Occupations(Name Varchar(30),occupation Varchar(30));
+Insert into Occupations values('Samantha','Doctor'),('Julia','Actor'),('Maria','Actor'),('Meera','Singer'),('Ashley','Professor'),('Ketty','Professor'),
+('Christeen','Professor'),('Jane','Actor'),('Jenny','Doctor'),('Priya','Singer');
+select * from Occupations;
+with cte as(
+select Name,occupation,ROW_NUMBER() 
+over (partition by occupation order by occupation ASC) 
+as occurance from Occupations)
+Select a.Name,b.name,c.name,d.name 
+from(select Name,occurance from cte where occupation='Actor') as a 
+left join(select name,occurance from cte where occupation='Doctor') as b on a.occurance=b.occurance 
+left join (select name, occurance from cte where occupation='Singer') as c on b.occurance=c.occurance 
+left join (select name, occurance from cte where occupation='Professor') as d on a.occurance=d.occurance;
