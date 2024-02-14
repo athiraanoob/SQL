@@ -1,0 +1,4 @@
+create table Students(ID int,Name varchar(50),Marks int);
+insert into students values(1,'Ashley',81),(2,'Samantha',75),(4,'Julia','76'),(3,'Belvet',84);
+select * from Students;
+select id,name from Students where Marks>75 order by RIGHT(name,3) Asc,ID ASC;
